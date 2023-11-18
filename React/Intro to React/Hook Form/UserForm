@@ -1,0 +1,57 @@
+import React, { useState } from  'react';
+    
+const UserForm = (props) => {
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLasttname] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");  
+    const [confirmpassword, setConfirmpassword] = useState("");  
+    
+    const createUser = (e) => {
+        // we must prevent the default refresh of the browser to keep our state from being reset
+        e.preventDefault();
+        
+        // shorthand ES6 syntax for building an object - see notes above
+        const newUser = { firstname, lastname, email, password, confirmpassword };
+        console.log("Welcome", newUser);
+    	setFirstname("");
+    	setLasttname("");
+    	setEmail("");
+    	setPassword("");
+    	setConfirmpassword("");
+    };
+    
+    return(
+        <form  onSubmit={ createUser }>
+            <div>
+                <label>First Name: </label> 
+                <input type="text" value={firstname} onChange={ (e) => setFirstname(e.target.value) } />
+            </div>
+            <div>
+                <label>Last Name: </label> 
+                <input type="text" value={lastname} onChange={ (e) => setLasttname(e.target.value) } />
+            </div>
+            <div>
+                <label>Email Address: </label> 
+                <input type="text" value={email} onChange={ (e) => setEmail(e.target.value) } />
+            </div>
+            <div>
+                <label>Password: </label>
+                <input type="text" value={password} onChange={ (e) => setPassword(e.target.value) } />
+            </div>
+            <div>
+                <label>Confirm Password: </label>
+                <input type="text" value={confirmpassword} onChange={ (e) => setConfirmpassword(e.target.value) } />
+            </div>
+            <p>Your Form Data</p>
+            <input type="submit" value="Create User" />
+            <div>First Name:{firstname} </div>
+            <div>Last Name:{lastname} </div>
+            <div>Email:{email} </div>
+            <div>Password:{password} </div>
+            <div>Confirm Password:{confirmpassword} </div>
+        </form>
+    );
+};
+    
+export default UserForm;
